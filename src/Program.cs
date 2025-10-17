@@ -27,5 +27,6 @@ class Program
         gestor.CerrarYLiberar(pedido2);
 
         Console.WriteLine($"\nComprobación de reutilización: \n Pedido 1: {pedido1.Id}\n Pedido 2: {pedido2.Id}");
+        Console.WriteLine($"Comprobacion de referencia: {ReferenceEquals(pedido1, pedido2)}");
     }
 }
