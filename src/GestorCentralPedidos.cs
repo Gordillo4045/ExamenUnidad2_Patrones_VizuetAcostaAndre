@@ -1,7 +1,23 @@
 sealed class GestorCentralPedidos
 {
-    private static readonly GestorCentralPedidos _instancia = new GestorCentralPedidos();
-    public static GestorCentralPedidos Instancia => _instancia;
+    private static GestorCentralPedidos? _instancia = null;
+    private static readonly object _lock = new object();
+
+    public static GestorCentralPedidos Instancia
+    {
+        get
+        {
+            if (_instancia == null)
+            {
+                lock (_lock)
+                {
+                    if (_instancia == null)
+                        _instancia = new GestorCentralPedidos();
+                }
+            }
+            return _instancia;
+        }
+    }
 
     private readonly PedidoPool _pool;
 
